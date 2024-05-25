@@ -28,4 +28,10 @@ public class Quote {
     public void setExchange(String exchange) {
         this.exchange = exchange;
     }
+    @Override
+    public String toString() {
+        return "Название валюты: " + name + '\'' +
+                ", Стоимость валюты: " + cost + '\'' +
+                ", Ссылка на обмен: " + exchange + '\'';
+    }
 }
