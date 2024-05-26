@@ -15,12 +15,12 @@ public class App {
         System.out.println("Получение актуальных данных о валютах...");
         Document doc = Jsoup.connect("https://www.banki.ru/products/currency/cb/").get();
         Elements currencyTerms = doc.getElementsByAttributeValue("class", "FlexboxGrid__sc-akw86o-0 ybYcl");
-        for (Element currecyTerm : currencyTerms) {
+        for (Element currencyTerm : currencyTerms) {
             Quote quote = new Quote();
             try {
-                quote.setName(currecyTerm.getElementsByClass("Text__sc-j452t5-0 fOLdnH currencyCbListItemstyled__StyledName-sc-12ajhcx-4 nLxpH").first().text());
-                quote.setCost(currecyTerm.getElementsByClass("Text__sc-j452t5-0 jxxlPG").first().text());
-                Element exchangeDetails = currecyTerm.getElementsByClass("Button__sc-16w8pak-2 dgmPSL").first();
+                quote.setName(currencyTerm.getElementsByClass("Text__sc-j452t5-0 fOLdnH currencyCbListItemstyled__StyledName-sc-12ajhcx-4 nLxpH").first().text());
+                quote.setCost(currencyTerm.getElementsByClass("Text__sc-j452t5-0 jxxlPG").first().text());
+                Element exchangeDetails = currencyTerm.getElementsByClass("Button__sc-16w8pak-2 dgmPSL").first();
                 quote.setExchange("https://www.banki.ru/" + exchangeDetails.attr("href"));
             } catch (NullPointerException e){
                 quote.setName("Название не найдено");
