@@ -34,5 +34,3 @@ public class App {
         quotes.forEach(System.out::println);
     }
 }
-
-//GridRow__sc-1e0lykf-0 idhGro
