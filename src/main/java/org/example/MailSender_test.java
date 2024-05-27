@@ -1,13 +1,13 @@
 package org.example;
 
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 import java.util.Properties;
 
-public class MailSender {
+public class MailSender_test {
     public static void main(String[] args) {
+
         String from = "munirov22072000@gmail.com";
         String to = "munirov22072000@gmail.com";
         String host = "smtp.gmail.com";
@@ -24,9 +24,21 @@ public class MailSender {
                 new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(from, "pass");
+                        return new PasswordAuthentication(from, "ceaojwizlxezfcyb");
                     }
                 }
         );
+        session.setDebug(true);
+        try {
+            MimeMessage msg = new MimeMessage(session);
+            msg.setFrom( new InternetAddress(from));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            msg.setSubject("Актуальный курс валют");
+            msg.setText("Hi");
+            Transport.send(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        }
     }
-}
