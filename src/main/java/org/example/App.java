@@ -5,7 +5,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,5 +34,19 @@ public class App {
         }
 
         quotes.forEach(System.out::println);
+
+        File csvFile = new File("output.csv");
+
+        try (PrintWriter printWriter = new PrintWriter(csvFile)) {
+            for (Quote quote : quotes) {
+                List<String> row = new ArrayList<>();
+
+                row.add("\"" + quote.getName() + "\"");
+                row.add("\"" +quote.getCost() + "\"");
+                row.add("\"" +quote.getExchange() + "\"");
+
+                printWriter.println(String.join(",", row));
+            }
+        }
     }
 }
